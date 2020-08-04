@@ -15,25 +15,19 @@ public class MainApp {
       AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
 
       UserService userService = context.getBean(UserService.class);
-     userService.add(new User("Niyaz", "Lastname1", "user1@mail.ru", new Car("Mersedes", 23423)));
+      userService.add(new User("Niyaz", "Lastname1", "user1@mail.ru", new Car("Mersedes", 23423)));
       userService.add(new User("User2", "Lastname2", "user2@mail.ru", new Car("Nisan", 7777)));
-      /* userService.add(new User("User3", "Lastname3", "user3@mail.ru", new Car("Mersedes", 23423)));
-      userService.add(new User("User4", "Lastname4", "user4@mail.ru"));*/
+      userService.add(new User("User3", "Lastname3", "user3@mail.ru", new Car("Mersedes", 23423)));
+      userService.add(new User("User4", "Lastname4", "user4@mail.ru"));
 
 
+      User user = userService.getUserByCarNameAndSeries("Mersedes", 23423);
 
-       User user1 = userService.getUserByCarNameAndSeries("Mersedes", 23423);
-       System.out.println(user1.getFirstName());
-       System.out.println(user1.getCar().getSeries());
-
-      List<User> users = userService.listUsers();
-      for (User user : users) {
-         System.out.println("Id = "+user.getId());
-         System.out.println("First Name = "+user.getFirstName());
-         System.out.println("Last Name = "+user.getLastName());
-         System.out.println("Email = "+user.getEmail());
-         System.out.println();
-      }
+      System.out.println("Id = "+user.getId());
+      System.out.println("First Name = "+user.getFirstName());
+      System.out.println("Last Name = "+user.getLastName());
+      System.out.println("Email = "+user.getEmail());
+      System.out.println("Series = "+user.getCar().getSeries());
 
       context.close();
    }
